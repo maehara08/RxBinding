@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.regex.Pattern;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 public class LoginActivity extends AppCompatActivity {
     private  static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9-._/+?]+@[A-Za-z0-9-_]+.[A-Za-z0-9-._]+$");
@@ -27,4 +31,13 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * EditTextなどTextViewの入力の状態を正規表現のPatternと比較して、パターンをみたいしているかBooleanのObservableで結果を返すメソッド
      */
+    private Observable<Boolean> observePatternTextChange(TextView textView ,final  Pattern pattern){
+        return RxTextView.textChanges(textView)
+                .map(new Func1<CharSequence, Boolean>() {
+                    @Override
+                    public Boolean call(CharSequence charSequence) {
+                        return pattern.matcher(charSequence).find();
+                    }
+                });
+    }
 }
