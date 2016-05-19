@@ -51,6 +51,13 @@
         android:text="sign in"
         android:id="@+id/signin_button"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="73dp" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="intent"
+        android:id="@+id/mainActivityButton"
+        android:layout_below="@+id/signin_button"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
